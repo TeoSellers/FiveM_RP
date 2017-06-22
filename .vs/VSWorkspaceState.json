@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\resources",
-    "\\resources\\[ply]",
-    "\\resources\\[ply]\\ply_automotoecole",
-    "\\resources\\[ply]\\ply_prefecture"
+    "\\resources\\[citizenv]"
   ],
-  "SelectedNode": "\\resources\\[ply]\\ply_prefecture\\server.lua",
+  "SelectedNode": "\\resources\\[citizenv]\\fivemenu",
   "PreviewInSolutionExplorer": false
 }

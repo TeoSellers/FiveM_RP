@@ -9,17 +9,53 @@ function updatejob(player, id)
   MySQL.Async.execute("UPDATE users SET `job`=@value WHERE identifier = @identifier", {['@value'] = job, ['@identifier'] = player})
 end
 
+function quitLastJob(source, job)
+  if job == 1 then
+
+  elseif job == 2 then
+    TriggerClientEvent("jobslegal:poolEnding", source)
+  elseif job == 3 then
+    TriggerClientEvent("jobslegal:binEnding", source)
+  elseif job == 4 then
+    TriggerClientEvent("jobslegal:mineEnding", source)
+  elseif job == 5 then
+    
+  elseif job == 6 then
+    TriggerClientEvent("transporter:endingDay", source)
+  elseif job == 7 then
+    TriggerClientEvent("transporter:endingDay", source)
+  elseif job == 8 then
+    TriggerClientEvent("transporter:endingDay", source)
+  elseif job == 9 then
+    TriggerClientEvent("transporter:endingDay", source)
+  elseif job == 10 then
+
+  elseif job == 11 then
+    TriggerClientEvent("jobslegal:orgEnding", source)
+  elseif job == 12 then
+    TriggerClientEvent("jobslegal:morgEnding", source)
+  elseif job == 13 then
+    TriggerServerEvent('es_em:sv_setService', 0)
+    TriggerServerEvent("vmenu:lastChar")
+  end
+end
+
 RegisterServerEvent('poleemploi:jobs')
 AddEventHandler('poleemploi:jobs', function(id)
   TriggerEvent('es:getPlayerFromId', source, function(user)
     if (user) then
       local source = source
       local player = user.identifier
+
+      ------ Quit Last job
+      quitLastJob(source, user.job)
+
+      ------ Get New Job
       local nameJob = nameJob(id)
       updatejob(player, id)
       user:setJob(id)
       TriggerEvent('poleemploi:getjobss', source)
-      TriggerClientEvent("citizenv:notify", source, "CHAR_AMANDA", 1, "Pôle Emploi", false, "Votre métier est maintenant : ".. nameJob)
+      TriggerClientEvent("citizenv:notify", source, "CHAR_AMANDA", 1, "Mairie", false, "Votre métier est maintenant : ".. nameJob)
     else
       TriggerEvent("es:desyncMsg")
     end
@@ -31,7 +67,7 @@ AddEventHandler('poleemploi:getjobs', function()
   TriggerEvent('es:getPlayerFromId', source, function(user)
     if (user) then
       local source = source
-      TriggerClientEvent("mine:getJobs", source, user:getJob())
+      TriggerClientEvent("jobslegal:getJobs", source, user:getJob())
     else
       TriggerEvent("es:desyncMsg")
     end
@@ -43,7 +79,7 @@ AddEventHandler('poleemploi:getjobss', function(source)
   TriggerEvent('es:getPlayerFromId', source, function(user)
     if (user) then
       local source = source
-      TriggerClientEvent("jobs-legal:getJobs", source, user:getJob())
+      TriggerClientEvent("jobslegal:getJobs", source, user:getJob())
     else
       TriggerEvent("es:desyncMsg")
     end
