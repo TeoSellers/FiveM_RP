@@ -1,5 +1,7 @@
 ITEMS = {}
 
+RegisterNetEvent("player:receiveItem")
+
 local MoneyOk = false
 
 function DrawNotif(text)
